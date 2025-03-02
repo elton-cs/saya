@@ -2,7 +2,11 @@ use anyhow::Result;
 use celestia_rpc::{BlobClient, Client};
 use celestia_types::{nmt::Namespace, AppVersion, Blob, TxConfig};
 use log::{debug, info};
-use tokio::sync::mpsc::{Receiver, Sender};
+use tokio::{
+    fs::File,
+    io::AsyncWriteExt,
+    sync::mpsc::{Receiver, Sender},
+};
 use url::Url;
 
 use crate::{
@@ -74,6 +78,10 @@ where
             // TODO: error handling
             let blob = Blob::new(NAMESPACE, serialized_packet, AppVersion::V3).unwrap();
             let commitment = blob.commitment.0;
+
+            // save the blob to a file
+            let mut file = File::create("blob.bin").await.unwrap();
+            file.write_all(&blob.data).await.unwrap();
 
             // TODO: error handling
             let celestia_block = client
