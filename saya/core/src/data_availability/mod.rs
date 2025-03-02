@@ -9,6 +9,9 @@ pub use celestia::{CelestiaDataAvailabilityBackend, CelestiaDataAvailabilityBack
 mod noop;
 pub use noop::{NoopDataAvailabilityBackend, NoopDataAvailabilityBackendBuilder};
 
+mod avail;
+pub use avail::{AvailDataAvailabilityBackend, AvailDataAvailabilityBackendBuilder};
+
 use crate::{prover::SnosProof, service::Daemon};
 
 pub trait DataAvailabilityBackendBuilder {
