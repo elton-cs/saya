@@ -86,11 +86,7 @@ where
             // save the blob to a file with timestamp in blobs directory
             let timestamp = chrono::Utc::now().timestamp();
             let filename = format!("blobs/blob_{}.bin", timestamp);
-            debug!(
-                "Writing blob data to file {}: {:?}",
-                filename,
-                hex::encode(&blob.data)
-            );
+            debug!("Writing blob data to file {}", filename);
             let mut file = File::create(filename).await.unwrap();
             file.write_all(&blob.data).await.unwrap();
             file.flush().await.unwrap();
