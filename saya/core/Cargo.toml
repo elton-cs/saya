@@ -38,3 +38,4 @@ url.workspace = true
 zip.workspace = true
 prover-sdk.workspace = true
 sqlx.workspace = true
+avail-rust.workspace = true

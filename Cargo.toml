@@ -15,9 +15,12 @@ saya-core = { path = "saya/core" }
 
 anyhow = { version = "1.0.95", default-features = false }
 bigdecimal = { version = "0.3.1", default-features = false }
+
 # `cairo-vm` fork used by `prove_block` from `snos`
-cairo-vm = { git = "https://github.com/Moonsong-Labs/cairo-vm", branch = "notlesh/snos-2024-11-04", default-features = false }
-prover-sdk = { git = "https://github.com/cartridge-gg/http-prover.git", rev = "02aebf2" }
+# cairo-vm = { git = "https://github.com/Moonsong-Labs/cairo-vm", branch = "notlesh/snos-2024-11-04", default-features = false }
+# prover-sdk = { git = "https://github.com/cartridge-gg/http-prover.git", rev = "02aebf2" }
+# prove_block = { git = "https://github.com/cartridge-gg/snos", rev = "03f07963" }
+
 celestia-rpc = { version = "0.8.0", default-features = false }
 celestia-types = { version = "0.9.0", default-features = false }
 ciborium = { version = "0.2.2", default-features = false }
@@ -38,7 +41,6 @@ integrity = { version = "0.1.0", default-features = false, features = [
 ] }
 log = "0.4.22"
 num-traits = { version = "0.2.19", default-features = false }
-prove_block = { git = "https://github.com/cartridge-gg/snos", rev = "03f07963" }
 reqwest = { version = "0.12.12", default-features = false, features = [
     "json",
     "multipart",
@@ -83,3 +85,9 @@ sqlx = { version = "0.8.2", features = [
 
 # Avail Rust SDK
 avail-rust = { git = "https://github.com/availproject/avail-rust", tag = "v0.1.4" }
+cairo-vm = { git = "https://github.com/elton-cs/cairo-vm.git", branch = "avail-cairo-vm-patch" }
+prover-sdk = { git = "https://github.com/elton-cs/http-prover.git", branch = "avail-modified" }
+prove_block = { git = "https://github.com/elton-cs/snos", branch = "avail-modified" }
+
+# Wasm Bindgen
+wasm-bindgen-futures = "0.4.50"

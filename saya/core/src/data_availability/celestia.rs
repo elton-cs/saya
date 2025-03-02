@@ -1,4 +1,5 @@
 use anyhow::Result;
+use avail_rust::prelude::*;
 use celestia_rpc::{BlobClient, Client};
 use celestia_types::{nmt::Namespace, AppVersion, Blob, TxConfig};
 use log::{debug, info};
@@ -84,6 +85,23 @@ where
                 height: celestia_block,
                 commitment,
             });
+
+            // Avail implementation
+            // let sdk = SDK::new("wss://turing-rpc.avail.so/ws").await.unwrap();
+            // let seed =
+            //     "window mask stomach noodle total mechanic vacuum noble inform guess jaguar flock"
+            //         .to_string();
+            // let account = account::from_secret_uri(&seed).unwrap();
+            // let my_application_key = 293;
+
+            // let avail_data = blob.data;
+            // let options = Options::new().app_id(my_application_key);
+            // let tx: Transaction<avail_rust::transactions::DataAvailabilityCalls::SubmitData> =
+            //     sdk.tx.data_availability.submit_data(data);
+            // let res: TransactionDetails = tx.execute_and_watch_inclusion(&account, options).await?;
+            // let avail_block = res.block_number;
+            // let avail_hash = res.block_hash;
+            // Avail implementation end
 
             info!(
                 "Proof made availalbe on Celestia block #{}. Commitment: {}",
