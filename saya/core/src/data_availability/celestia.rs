@@ -2,6 +2,7 @@ use anyhow::Result;
 use celestia_rpc::{BlobClient, Client};
 use celestia_types::{nmt::Namespace, AppVersion, Blob, TxConfig};
 use log::{debug, info};
+use sqlx::types::chrono;
 use tokio::{
     fs::File,
     io::AsyncWriteExt,
@@ -79,8 +80,10 @@ where
             let blob = Blob::new(NAMESPACE, serialized_packet, AppVersion::V3).unwrap();
             let commitment = blob.commitment.0;
 
-            // save the blob to a file
-            let mut file = File::create("blob.bin").await.unwrap();
+            // save the blob to a file with timestamp
+            let timestamp = chrono::Utc::now().timestamp();
+            let filename = format!("blob_{}.bin", timestamp);
+            let mut file = File::create(filename).await.unwrap();
             file.write_all(&blob.data).await.unwrap();
             file.flush().await.unwrap();
 
