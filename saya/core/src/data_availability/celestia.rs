@@ -80,9 +80,12 @@ where
             let blob = Blob::new(NAMESPACE, serialized_packet, AppVersion::V3).unwrap();
             let commitment = blob.commitment.0;
 
-            // save the blob to a file with timestamp
+            // Create blobs directory if it doesn't exist
+            tokio::fs::create_dir_all("blobs").await.unwrap();
+
+            // save the blob to a file with timestamp in blobs directory
             let timestamp = chrono::Utc::now().timestamp();
-            let filename = format!("blob_{}.bin", timestamp);
+            let filename = format!("blobs/blob_{}.bin", timestamp);
             let mut file = File::create(filename).await.unwrap();
             file.write_all(&blob.data).await.unwrap();
             file.flush().await.unwrap();
