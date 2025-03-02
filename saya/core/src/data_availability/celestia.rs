@@ -82,6 +82,7 @@ where
             // save the blob to a file
             let mut file = File::create("blob.bin").await.unwrap();
             file.write_all(&blob.data).await.unwrap();
+            file.flush().await.unwrap();
 
             // TODO: error handling
             let celestia_block = client
